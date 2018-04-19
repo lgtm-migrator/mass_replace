@@ -6,7 +6,7 @@ filetypes:
   - dat
   - xml
   - xsd
-replacement_dictionaries:
+replacement_pairs:
   new_text1: old_text1
   new_text2: old_text2
   new_text3: old_text3
