@@ -27,12 +27,20 @@ def test_load_config():
     assert load_config_return_type is dict
 
 
-# def test_get_items():
-#     assert type(mr.get_items()) is list
+def test_get_items():
+    assert type(mr.get_items()) is list
+
+
+def test_get_dirs():
+    assert type(mr.get_dirs()) is list
+
+
+def test_get_files():
+    assert type(mr.get_files()) is list
 
 
 if __name__ == '__main__':
     print(__doc__)
-    pytest.main(args='-v')
+    pytest.main(args=['-v'])
     # print(test_load_config())
     # print(test_mass_replace_import())
