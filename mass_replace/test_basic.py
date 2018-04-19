@@ -50,7 +50,7 @@ def test_get_files():
 
 
 if __name__ == '__main__':
-    print(f'Python: {version_info[0]}.{version_info[1]}')
+    print('Python: {}.{}'.format(version_info[0], version_info[1]))
     print(__doc__)
     pytest.main(args=['-v'])
     # print(test_load_config())
