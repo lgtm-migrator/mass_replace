@@ -20,7 +20,7 @@ install:
 script:
   - ls
   # - pytest -v # or py.test for Python versions 3.5 and below
-  - py.test -v --cov-report term --cov-report xml coveralls
+  - pytest -v --cov-report term --cov-report xml --cov=mass_replace
   - ls
 after_success:
   - coveralls
