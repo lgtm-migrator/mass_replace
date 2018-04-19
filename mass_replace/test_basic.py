@@ -4,6 +4,7 @@ tests_basic.py
 Basic unit tests for `mass_replace` python module written using pytest.
 """
 from sys import version_info
+from os import path
 import pytest
 try:
     import mass_replace as mr
@@ -46,7 +47,12 @@ def test_get_dirs():
 @pytest.mark.skipif(PYTHON_VER <= 2,
                     reason="List comprehension error with Python 2")
 def test_get_files():
-    assert type(mr.get_files()) is list
+    """Test that `get_files()` returns a list and that every item within the
+    list is a file."""
+    files = mr.get_files()
+    assert type(files) is list
+    for f in files:
+        assert path.isfile(f)
 
 
 if __name__ == '__main__':
