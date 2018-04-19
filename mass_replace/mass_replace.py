@@ -23,8 +23,17 @@ def load_config():
 
 def get_items():
     """Returns a list of files and folders in a directory"""
-    item_list = []
-    return item_list
+    return [x for x in os.listdir()]
+
+
+def get_dirs():
+    """Returns a list of all folders in the current working directory."""
+    return [x for x in get_items() if os.path.isdir(x)]
+
+
+def get_files():
+    """Returns a list of all files in the current working directory."""
+    return [x for x in get_items() if os.path.isfile(x)]
 
 
 if __name__ == '__main__':
