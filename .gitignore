@@ -60,3 +60,7 @@ target/
 \.pytest_cache/v/cache/
 
 \.vscode/
+
+ignore/
+
+mass_replace/\.pytest_cache/v/cache/
