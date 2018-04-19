@@ -1,0 +1,12 @@
+# mass_replace config file
+replace_on_all_types: TRUE
+filetypes:
+  - txt
+  - csv
+  - dat
+  - xml
+  - xsd
+replacement_dictionaries:
+  new_text1: old_text1
+  new_text2: old_text2
+  new_text3: old_text3
