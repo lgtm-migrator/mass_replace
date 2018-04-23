@@ -4,6 +4,7 @@ mass_replace.py
 WIP
 """
 import os
+import fileinput
 import yaml
 from pprint import pprint as pp
 
@@ -34,6 +35,12 @@ def get_dirs():
 def get_files():
     """Returns a list of all files in the current working directory."""
     return [x for x in get_items() if os.path.isfile(x)]
+
+
+def file_find_replace(filename, text_to_search, replacement_text):
+    with fileinput.FileInput(filename, inplace=True, backup='.bak') as file:
+        for line in file:
+            print(line.replace(text_to_search, replacement_text), end='')
 
 
 if __name__ == '__main__':
