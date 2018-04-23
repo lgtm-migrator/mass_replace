@@ -48,6 +48,24 @@ def many_find_replace(filename, text_search_replace_dicts):
         file_find_replace(filename, text_to_search, replacement_text)
 
 
+def discover_filetypes(root_folder=None, hard_copy=True):
+    if not root_folder:
+        try:
+            root_folder = load_config('config.yaml')['root_folder']
+            if root_folder is None:
+                raise(FileNotFoundError)
+        except FileNotFoundError:
+            root_folder = os.getcwd()
+    file_types = set() 
+    for _, _, filenames in os.walk(root_folder):
+        f_types = ['.{}'.format(ext.split('.')[-1]) for ext in filenames]
+        file_types.update(f_types)
+    if hard_copy:
+        with open('file_exts.txt', 'w') as f_out:
+            f_out.writelines('\n'.join(file_types))
+    return file_types
+
+
 def mass_replace(root_folder=None, config=None, verbose=False):
     """Peforms find and replace operations on files nested in a root direcotry
     according to settings in the `config.yaml` file."""
@@ -59,16 +77,9 @@ def mass_replace(root_folder=None, config=None, verbose=False):
     replacement_pairs = config['replacement_pairs']
     for i in replacement_pairs.items():
         print(i)
-    # file_ls = get_files()
-    # dir_ls = get_dirs()
-    # if verbose:
-    #     print('\n****FILES****')
-    #     pp(file_ls)
-    #     print('\n****FOLDERS****')
-    #     pp(dir_ls)
     counter = 0
     for dirpath, dirnames, filenames in os.walk(root_folder):
-        valid_files = [f for f in filenames if f.split('.')[1]
+        valid_files = [f for f in filenames if f.split('.')[-1]
                        in config['filetypes']]
         if verbose:
             print(f'\tCurrent Path - STEP:{counter}')
@@ -87,8 +98,8 @@ def mass_replace(root_folder=None, config=None, verbose=False):
 
 if __name__ == '__main__':
     print(__doc__)
-    # resolve_wd()
-    # pp(load_config('mass_replace/config.yaml'))
-    file_find_replace('lorem.txt', 'Lorem', 'REPLACED')
-    print('\tMASS_REPLACE')
-    mass_replace(verbose=True)
+    pp(discover_filetypes(hard_copy=True))
+    # file_find_replace('lorem.txt', 'Lorem', 'REPLACED')
+    # print('\tMASS_REPLACE')
+    # mass_replace(verbose=True)
+
