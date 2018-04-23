@@ -1,0 +1,26 @@
+os:
+  - linux
+  # - osx
+language: python
+python:
+  # - "2.6"
+  # - "2.7"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+# command to install dependencies
+install:
+  - pip install pytest --upgrade
+  - pip install coverage
+  - pip install python-coveralls
+  - pip install pytest-cov
+  - pip install -r requirements.txt
+# command to run tests
+script:
+  - ls
+  # - pytest -v # or py.test for Python versions 3.5 and below
+  - pytest -v --cov-report term --cov-report xml --cov=mass_replace
+  - ls
+after_success:
+  - coveralls
