@@ -1,5 +1,6 @@
 # mass_replace config file
 replace_on_all_types: TRUE
+root_folder: mass_replace
 filetypes:
   - txt
   - csv
@@ -7,6 +8,6 @@ filetypes:
   - xml
   - xsd
 replacement_pairs:
-  new_text1: old_text1
-  new_text2: old_text2
+  new_text1: Lorem
+  new_text2: ipsum
   new_text3: old_text3
