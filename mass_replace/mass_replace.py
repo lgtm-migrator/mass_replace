@@ -49,6 +49,9 @@ def many_find_replace(filename, text_search_replace_dicts):
 
 
 def discover_filetypes(root_folder=None, hard_copy=True):
+    """Walks through the specified `root_folder` and collects all file
+    extension types.
+    Writes the extension types to `file_exts.txt`."""
     if not root_folder:
         try:
             root_folder = load_config('config.yaml')['root_folder']
@@ -73,7 +76,7 @@ def mass_replace(root_folder=None, config=None, verbose=False):
         config = load_config('config.yaml')
     if not root_folder:
         root_folder = config['root_folder']
-    print(f'ROOT: {root_folder}')
+    print('ROOT: {}'.format('root_folder'))
     replacement_pairs = config['replacement_pairs']
     for i in replacement_pairs.items():
         print(i)
@@ -82,24 +85,27 @@ def mass_replace(root_folder=None, config=None, verbose=False):
         valid_files = [f for f in filenames if f.split('.')[-1]
                        in config['filetypes']]
         if verbose:
-            print(f'\tCurrent Path - STEP:{counter}')
+            print('=' * 79)
+            print('\tCurrent Path - STEP:{}'.format(counter))
             pp(dirpath)
-            print(f'\tDirectories - STEP:{counter}')
+            print('\tDirectories - STEP:{}'.format(counter))
             pp(dirnames)
-            print(f'\tFiles: - STEP:{counter}')
+            print('\tFiles: - STEP:{}'.format(counter))
             pp(filenames)
             print()
         counter += 1
         for fname in valid_files:
-            print(f'|----{fname}')
-            many_find_replace(f'{dirpath}\\{fname}', replacement_pairs)
+            print('|----{}'.format(fname))
+            many_find_replace('{}\\{}'.format(dirpath, fname),
+                              replacement_pairs)
     return
 
 
 if __name__ == '__main__':
     print(__doc__)
+    print('*' * 79)
+    print('discover_filetypes()\n', discover_filetypes.__doc__)
     pp(discover_filetypes(hard_copy=True))
-    # file_find_replace('lorem.txt', 'Lorem', 'REPLACED')
-    # print('\tMASS_REPLACE')
-    # mass_replace(verbose=True)
-
+    print('*' * 79)
+    print('mass_replace()\n', mass_replace.__doc__)
+    mass_replace(verbose=True)

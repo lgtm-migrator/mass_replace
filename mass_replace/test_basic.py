@@ -8,7 +8,7 @@ from os import path
 import pytest
 try:
     import mass_replace as mr
-except ModuleNotFoundError:
+except ImportError:
     print('`mass_replace` not imported')
 
 PYTHON_VER = version_info[0]
