@@ -1,5 +1,4 @@
 # mass_replace config file
-replace_on_all_types: TRUE
 root_folder: mass_replace
 filetypes:
   - txt

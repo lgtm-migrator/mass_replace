@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 mass_replace.py
 ~~~~~~~~~~~~~~~
@@ -10,10 +11,9 @@ from pprint import pprint as pp
 
 
 def resolve_wd(target_dir='mass_replace'):
-    try:
+    if target_dir in get_dirs():
         os.chdir(target_dir)
-    except Exception as E:
-        print(E)
+        resolve_wd(target_dir=target_dir)
 
 
 def load_config(filename='config.yaml'):
@@ -59,7 +59,7 @@ def discover_filetypes(root_folder=None, hard_copy=True):
                 raise(FileNotFoundError)
         except FileNotFoundError:
             root_folder = os.getcwd()
-    file_types = set() 
+    file_types = set()
     for _, _, filenames in os.walk(root_folder):
         f_types = ['.{}'.format(ext.split('.')[-1]) for ext in filenames]
         file_types.update(f_types)
@@ -96,16 +96,14 @@ def mass_replace(root_folder=None, config=None, verbose=False):
         counter += 1
         for fname in valid_files:
             print('|----{}'.format(fname))
-            many_find_replace('{}\\{}'.format(dirpath, fname),
+            many_find_replace('{}/{}'.format(dirpath, fname),
                               replacement_pairs)
     return
 
 
 if __name__ == '__main__':
-    print(__doc__)
-    print('*' * 79)
+    print('{0}\n{1}'.format(__doc__, '*' * 79))
     print('discover_filetypes()\n', discover_filetypes.__doc__)
     pp(discover_filetypes(hard_copy=True))
-    print('*' * 79)
-    print('mass_replace()\n', mass_replace.__doc__)
-    mass_replace(verbose=True)
+    print('{}\nmass_replace()\n{}\n{}'.format('*' * 79, mass_replace.__doc__,
+                                              mass_replace(verbose=True)))
