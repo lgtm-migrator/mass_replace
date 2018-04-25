@@ -73,10 +73,13 @@ def mass_replace(root_folder=None, config=None, verbose=False):
     """Peforms find and replace operations on files nested in a root direcotry
     according to settings in the `config.yaml` file."""
     if not config:
-        config = load_config('config.yaml')
+        try:
+            config = load_config('config.yaml')
+        except FileNotFoundError:
+            config = load_config('mass_replace/config.yaml')
     if not root_folder:
         root_folder = config['root_folder']
-    print('ROOT: {}'.format('root_folder'))
+    print('ROOT: {}'.format(root_folder))
     replacement_pairs = config['replacement_pairs']
     for i in replacement_pairs.items():
         print(i)

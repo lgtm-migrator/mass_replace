@@ -44,9 +44,9 @@ filetypes:
   - xml
   - txt
 replacement_pairs:
-  new_text1: old_text1
-  new_text2: old_text1
-  puff_daddy: diddy
+  old_text1: new_text1
+  old_text2: new_text2
+  puff_daddy: diddy 
 ```
 
 ### Ease of Use suggestions

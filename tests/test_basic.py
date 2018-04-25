@@ -10,7 +10,8 @@ from os import path, getcwd
 import pytest
 try:
     import mass_replace as mr
-except ImportError:
+except ImportError as E:
+    print(E)
     from context import mass_replace as mr
 
 
@@ -24,8 +25,7 @@ def read_file_lines(filename):
 
 
 def test_mass_replace_import():
-    assert isinstance(mr.__doc__, str)
-    print(type(mr))
+    assert mr
 
 
 def test_correct_working_dir():
@@ -65,7 +65,7 @@ def test_get_files():
 
 def test_simple_file_find_and_replace():
     """Replace text in the lorem.txt file and undo it."""
-    filename = 'mass_replace/lorem.txt'
+    filename = 'mass_replace/docs/lorem.txt'
     mr.file_find_replace(filename, 'Lorem', 'REPLACED')
     first_str = read_file_lines(filename)[0].split(' ')[0]
     assert first_str == 'REPLACED'
