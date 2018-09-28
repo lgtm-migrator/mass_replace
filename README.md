@@ -9,7 +9,7 @@ branch|Travis CI|Coveralls
 
 ## Use case
 
-`mass_replace` "Walkthrough" through a specified `root_folder` and perform find and replace operations on every file of the specified type.
+`mass_replace` "Walkthrough" a specified `root_folder` and perform find and replace operations on every file of the specified type.
 
 * If `Python 3` is installed on your system it can be run as `mass_replace.py` Python script
 * Can be run as a standalone Window Executable (`.exe`) 
