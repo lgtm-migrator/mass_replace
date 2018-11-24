@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pyyaml = ">=3.13"
+
+[dev-packages]
+flit = "*"
+black = {version = "==18.9b0",markers = "python_version >= '3.6'"}
+flake8 = "*"
+pytest = "*"
+pytest-cov = "*"
+coveralls = "*"
+
+[requires]
+python_version = "3.7"
+
+[scripts]
+format = "black mass_replace tests"
+reqs = "sh scripts/update_reqs.sh"
