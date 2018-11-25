@@ -42,12 +42,12 @@ def test_load_config():
 
 @pytest.mark.skipif(PYTHON_VER[0] <= 2, reason="List comprehension error with Python 2")
 def test_get_items():
-    assert type(mr.get_items()) is list
+    assert isinstance(mr.get_items(), list)
 
 
 @pytest.mark.skipif(PYTHON_VER[0] <= 2, reason="List comprehension error with Python 2")
 def test_get_dirs():
-    assert type(mr.get_dirs()) is list
+    assert isinstance(mr.get_dirs(), list)
 
 
 @pytest.mark.skipif(PYTHON_VER[0] <= 2, reason="List comprehension error with Python 2")
@@ -55,7 +55,7 @@ def test_get_files():
     """Test that `get_files()` returns a list and that every item within the
     list is a file."""
     files = mr.get_files()
-    assert type(files) is list
+    assert isinstance(files, list)
     for f in files:
         assert path.isfile(f)
 
@@ -74,7 +74,7 @@ def test_simple_file_find_and_replace():
 def test_discover_filetypes(tmp_path):
     mr.discover_filetypes()
     filetypes = mr.discover_filetypes("tests", hard_copy=str(tmp_path / "files.ext"))
-    assert type(filetypes) is set
+    assert isinstance(filetypes, set)
     assert len(filetypes) > 1
 
 

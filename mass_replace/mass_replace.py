@@ -103,7 +103,6 @@ def mass_replace(root_folder=None, config=None, verbose=False):
         for fname in valid_files:
             print("|----{}".format(fname))
             many_find_replace("{}/{}".format(dirpath, fname), replacement_pairs)
-    return
 
 
 if __name__ == "__main__":
