@@ -59,8 +59,10 @@ target/
 
 \.pytest_cache/v/cache/
 
+# IDE stuff
 \.vscode/
 
+# misc
 ignore/
-
 mass_replace/\.pytest_cache/v/cache/
+file_exts\.txt
