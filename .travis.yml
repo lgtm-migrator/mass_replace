@@ -24,3 +24,11 @@ script:
   - ls
 after_success:
   - coveralls
+deploy:
+  provider: pypi
+  user: $FLIT_USERNAME
+  password: $FLIT_PASSWORD
+  server: $FLIT_INDEX_URL
+  skip_existing: true
+  on:
+    branch: dev
