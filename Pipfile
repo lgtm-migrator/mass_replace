@@ -13,6 +13,9 @@ pytest = "*"
 pytest-cov = "*"
 coveralls = "*"
 prospector = "*"
+# latest flake8 causing problems
+flake8 = "==3.5.0"
+wily = "*"
 
 [requires]
 python_version = "3.7"
