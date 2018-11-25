@@ -72,9 +72,9 @@ def test_simple_file_find_and_replace():
     assert first_str == "Lorem"
 
 
-def test_discover_filetypes():
+def test_discover_filetypes(tmp_path):
     mr.discover_filetypes()
-    filetypes = mr.discover_filetypes("tests")
+    filetypes = mr.discover_filetypes("tests", hard_copy=tmp_path / "files.ext")
     assert type(filetypes) is set
     assert len(filetypes) > 1
 

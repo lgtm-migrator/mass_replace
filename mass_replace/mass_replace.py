@@ -48,7 +48,7 @@ def many_find_replace(filename, text_search_replace_dicts):
         file_find_replace(filename, text_to_search, replacement_text)
 
 
-def discover_filetypes(root_folder=None, hard_copy=True):
+def discover_filetypes(root_folder=None, hard_copy="file_exts.txt"):
     """Walks through the specified `root_folder` and collects all file
     extension types.
     Writes the extension types to `file_exts.txt`."""
@@ -64,7 +64,7 @@ def discover_filetypes(root_folder=None, hard_copy=True):
         f_types = [".{}".format(ext.split(".")[-1]) for ext in filenames]
         file_types.update(f_types)
     if hard_copy:
-        with open("file_exts.txt", "w") as f_out:
+        with open(hard_copy, "w") as f_out:
             f_out.writelines("\n".join(file_types))
     return file_types
 
