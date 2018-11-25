@@ -16,8 +16,7 @@ except ImportError as E:
     print(E)
     from context import mass_replace as mr
 
-
-PYTHON_VER = version_info[0]
+PYTHON_VER = (version_info.major, version_info.minor)
 
 
 def read_file_lines(filename):
@@ -34,24 +33,24 @@ def test_correct_working_dir():
     pass
 
 
-@pytest.mark.skipif(PYTHON_VER <= 2, reason="List comprehension error with Python 2")
+@pytest.mark.skipif(PYTHON_VER[0] <= 2, reason="List comprehension error with Python 2")
 def test_load_config():
     load_config_return_type = type(mr.load_config("mass_replace/config.yaml"))
     print(load_config_return_type, dict)
     assert load_config_return_type is dict
 
 
-@pytest.mark.skipif(PYTHON_VER <= 2, reason="List comprehension error with Python 2")
+@pytest.mark.skipif(PYTHON_VER[0] <= 2, reason="List comprehension error with Python 2")
 def test_get_items():
     assert type(mr.get_items()) is list
 
 
-@pytest.mark.skipif(PYTHON_VER <= 2, reason="List comprehension error with Python 2")
+@pytest.mark.skipif(PYTHON_VER[0] <= 2, reason="List comprehension error with Python 2")
 def test_get_dirs():
     assert type(mr.get_dirs()) is list
 
 
-@pytest.mark.skipif(PYTHON_VER <= 2, reason="List comprehension error with Python 2")
+@pytest.mark.skipif(PYTHON_VER[0] <= 2, reason="List comprehension error with Python 2")
 def test_get_files():
     """Test that `get_files()` returns a list and that every item within the
     list is a file."""

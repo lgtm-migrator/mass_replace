@@ -4,10 +4,14 @@ mass_replace.py
 ~~~~~~~~~~~~~~~
 WIP
 """
+from sys import version_info
 import os
 import fileinput
 import yaml
 from pprint import pprint as pp
+
+
+PYTHON_VER = (version_info.major, version_info.minor)
 
 
 def resolve_wd(target_dir="mass_replace"):
