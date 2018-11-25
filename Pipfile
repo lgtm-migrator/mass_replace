@@ -15,7 +15,7 @@ coveralls = "*"
 prospector = "*"
 # latest flake8 causing problems
 flake8 = "==3.5.0"
-wily = "*"
+wily = {version = "*", markers =  "python_version >= '3.7'"}
 
 [requires]
 python_version = "3.7"
