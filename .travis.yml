@@ -24,6 +24,7 @@ script:
   - ls
 after_success:
   - coveralls
+  - wily report
 deploy:
   provider: pypi
   user: $FLIT_USERNAME
