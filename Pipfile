@@ -1,0 +1,28 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pyyaml = ">=3.13"
+
+[dev-packages]
+black = {version = "==18.9b0",markers = "python_version >= '3.6'"}
+pre-commit = "*"
+pytest = "*"
+pytest-cov = "*"
+coveralls = "*"
+prospector = {extras = ["with_pyroma"],version = "*"}
+# wily = {version = "*",markers = "python_version >= '3.7'"}
+twine = "*"
+readme-renderer = {extras = ["md"],version = "*"}
+
+[requires]
+python_version = "3.7"
+
+[scripts]
+format = "black ."
+reqs = "sh scripts/update_reqs.sh"
+pre = "pre-commit run --all-files"
+lint = "prospector --output-format grouped"
+test = "pytest -rpsf --cov-report term-missing --cov=mass_replace tests/"

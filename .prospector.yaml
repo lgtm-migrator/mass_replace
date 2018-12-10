@@ -1,0 +1,26 @@
+pylint:
+  options:
+    bad-names: foo,baz,toto,tutu,tata
+  disable:
+    - line-too-long
+
+pyflakes:
+  disable:
+    # let pylint used-before-assignment handle this
+    - F821
+    - F401
+
+pep8:
+  options:
+    max-line-length: 100
+
+mccabe:
+  options:
+    # max-complexity default = 10
+    max-complexity: 20
+
+pyroma:
+  run: true
+
+pep257:
+  run: false

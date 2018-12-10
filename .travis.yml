@@ -1,27 +1,28 @@
-os:
-  - linux
-  # - osx
 language: python
+cache: pip
 python:
-  # - "2.6"
-  # - "2.7"
-  - "3.3"
-  - "3.4"
   - "3.5"
   - "3.6"
+# Enable 3.7 without globally enabling sudo and dist: xenial for other build jobs
+matrix:
+  include:
+    - python: 3.7
+      dist: xenial
+      sudo: true
 # command to install dependencies
-install:
-  - pip install pytest --upgrade
-  - pip install coverage
-  - pip install python-coveralls
-  - pip install pytest-cov
-  - pip install -r requirements.txt
+install: "make"
 # command to run tests
 script:
-  - pwd
-  - ls
-  # - pytest -v # or py.test for Python versions 3.5 and below
-  - pytest -v --cov-report term --cov-report xml --cov=mass_replace tests/
-  - ls
+  - make test
 after_success:
   - coveralls
+  - make lint
+  - make check_format
+deploy:
+  provider: pypi
+  user: $FLIT_USERNAME
+  password: $FLIT_PASSWORD
+  server: $FLIT_INDEX_URL
+  skip_existing: true
+  on:
+    branch: dev

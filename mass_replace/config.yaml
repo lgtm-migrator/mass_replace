@@ -1,5 +1,5 @@
 # mass_replace config file
-root_folder: mass_replace
+root_folder: docs
 filetypes:
   - txt
   - csv
@@ -7,6 +7,7 @@ filetypes:
   - xml
   - xsd
 replacement_pairs:
-  new_text1: Lorem
-  new_text2: ipsum
-  new_text3: old_text3
+  Lorem: new_text1
+  ipsum: new_text2
+  Aliquam: new_text3
+  old_text: new_text4
