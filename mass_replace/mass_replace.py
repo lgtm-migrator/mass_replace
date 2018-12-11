@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-mass_replace.py
-~~~~~~~~~~~~~~~
-WIP
-"""
 from sys import version_info
 import os
 import fileinput
