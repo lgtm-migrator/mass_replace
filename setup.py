@@ -4,12 +4,15 @@
 # Note: To use the 'upload' functionality of this file, you must:
 #   $ pip install twine
 
-import io
 import os
 import sys
+import pathlib
 from shutil import rmtree
 
 from setuptools import find_packages, setup, Command
+
+# The directory containing this file
+HERE = pathlib.Path(__file__).parent
 
 # Package meta-data.
 NAME = "mass_replace"
@@ -17,28 +20,21 @@ DESCRIPTION = "Walkthrough directories and find and replace txt on select filety
 URL = "https://github.com/Kilo59/mass_replace"
 EMAIL = "gabriel59kg@gmail.com"
 AUTHOR = "Gabriel Gore"
-REQUIRES_PYTHON = ">=3.4.0"
-VERSION = "0.1.1"
+REQUIRES_PYTHON = ">=3.5.0"
+# replace with __version__
+VERSION = "0.0.2"
 
 # What packages are required for this module to be executed?
 REQUIRED = ["pyaml"]
 
-# The rest you shouldn't have to touch too much :)
-# ------------------------------------------------
-# Except, perhaps the License and Trove Classifiers!
-# If you do change the License, remember to change the Trove Classifier for that!
-
-here = os.path.abspath(os.path.dirname(__file__))
-
 # Import the README and use it as the long-description.
-# Note: this will only work if 'README.rst' is present in your MANIFEST.in file!
-# with io.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
-#     long_description = '\n' + f.read()
+# The text of the README file
+README = (HERE / "README.md").read_text(encoding="utf-8")
 
 # Load the package's __version__.py module as a dictionary.
 about = {}
 if not VERSION:
-    with open(os.path.join(here, NAME, "__version__.py")) as f:
+    with open(HERE.joinpath(NAME, "__version__.py")) as f:
         exec(f.read(), about)
 else:
     about["__version__"] = VERSION
@@ -64,7 +60,7 @@ class UploadCommand(Command):
     def run(self):
         try:
             self.status("Removing previous builds…")
-            rmtree(os.path.join(here, "dist"))
+            rmtree(HERE.joinpath("dist"))
         except OSError:
             pass
 
@@ -86,17 +82,13 @@ setup(
     name=NAME,
     version=about["__version__"],
     description=DESCRIPTION,
-    # long_description=long_description,
+    long_description=README,
     author=AUTHOR,
     author_email=EMAIL,
     python_requires=REQUIRES_PYTHON,
     url=URL,
     packages=find_packages(exclude=("tests",)),
-    # If your package is a single module, use this instead of 'packages':
-    # py_modules=['mypackage'],
-    # entry_points={
-    #     'console_scripts': ['mycli=mymodule:cli'],
-    # },
+    entry_points={"console_scripts": ["replace=mass_replace.__main__:main"]},
     install_requires=REQUIRED,
     include_package_data=True,
     license="MIT",
@@ -106,10 +98,11 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: Implementation :: CPython",
+        "Development Status :: 2 - Pre-Alpha",
     ],
     # $ setup.py publish support.
     cmdclass={"upload": UploadCommand},
