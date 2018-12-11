@@ -11,7 +11,7 @@ sys.path.insert(
     0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../mass_replace"))
 )
 
-import mass_replace
+import mass_replace  # pylint: disable=wrong-import-position
 
 print("USING context.py")
 

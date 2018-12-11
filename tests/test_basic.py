@@ -16,8 +16,7 @@ except ImportError as E:
     print(E)
     from context import mass_replace as mr
 
-
-PYTHON_VER = version_info[0]
+PYTHON_VER = (version_info.major, version_info.minor)
 
 
 def read_file_lines(filename):
@@ -34,29 +33,29 @@ def test_correct_working_dir():
     pass
 
 
-@pytest.mark.skipif(PYTHON_VER <= 2, reason="List comprehension error with Python 2")
+@pytest.mark.skipif(PYTHON_VER[0] <= 2, reason="List comprehension error with Python 2")
 def test_load_config():
     load_config_return_type = type(mr.load_config("mass_replace/config.yaml"))
     print(load_config_return_type, dict)
     assert load_config_return_type is dict
 
 
-@pytest.mark.skipif(PYTHON_VER <= 2, reason="List comprehension error with Python 2")
+@pytest.mark.skipif(PYTHON_VER[0] <= 2, reason="List comprehension error with Python 2")
 def test_get_items():
-    assert type(mr.get_items()) is list
+    assert isinstance(mr.get_items(), list)
 
 
-@pytest.mark.skipif(PYTHON_VER <= 2, reason="List comprehension error with Python 2")
+@pytest.mark.skipif(PYTHON_VER[0] <= 2, reason="List comprehension error with Python 2")
 def test_get_dirs():
-    assert type(mr.get_dirs()) is list
+    assert isinstance(mr.get_dirs(), list)
 
 
-@pytest.mark.skipif(PYTHON_VER <= 2, reason="List comprehension error with Python 2")
+@pytest.mark.skipif(PYTHON_VER[0] <= 2, reason="List comprehension error with Python 2")
 def test_get_files():
     """Test that `get_files()` returns a list and that every item within the
     list is a file."""
     files = mr.get_files()
-    assert type(files) is list
+    assert isinstance(files, list)
     for f in files:
         assert path.isfile(f)
 
@@ -72,10 +71,10 @@ def test_simple_file_find_and_replace():
     assert first_str == "Lorem"
 
 
-def test_discover_filetypes():
+def test_discover_filetypes(tmp_path):
     mr.discover_filetypes()
-    filetypes = mr.discover_filetypes("tests")
-    assert type(filetypes) is set
+    filetypes = mr.discover_filetypes("tests", hard_copy=str(tmp_path / "files.ext"))
+    assert isinstance(filetypes, set)
     assert len(filetypes) > 1
 
 

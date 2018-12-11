@@ -7,16 +7,20 @@ name = "pypi"
 pyyaml = ">=3.13"
 
 [dev-packages]
-flit = "*"
 black = {version = "==18.9b0",markers = "python_version >= '3.6'"}
-flake8 = "*"
+pre-commit = "*"
 pytest = "*"
 pytest-cov = "*"
 coveralls = "*"
+prospector = {extras = ["with_pyroma"],version = "*"}
+# wily = {version = "*",markers = "python_version >= '3.7'"}
 
 [requires]
 python_version = "3.7"
 
 [scripts]
-format = "black mass_replace tests"
+format = "black ."
 reqs = "sh scripts/update_reqs.sh"
+pre = "pre-commit run --all-files"
+lint = "prospector --output-format grouped"
+test = "pytest -rpsf --cov-report term-missing --cov=mass_replace tests/"

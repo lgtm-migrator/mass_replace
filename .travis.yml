@@ -1,7 +1,5 @@
-os:
-  - linux
-  # - osx
 language: python
+cache: pip
 python:
   - "3.5"
   - "3.6"
@@ -12,15 +10,19 @@ matrix:
       dist: xenial
       sudo: true
 # command to install dependencies
-install:
-  - pip install pipenv
-  - pipenv install --dev --deploy
+install: "make"
 # command to run tests
 script:
-  - pwd
-  - ls
-  # - pytest -v # or py.test for Python versions 3.5 and below
-  - pytest -v --cov-report term --cov-report xml --cov=mass_replace tests/
-  - ls
+  - make test
 after_success:
   - coveralls
+  - make lint
+  - make check_format
+deploy:
+  provider: pypi
+  user: $FLIT_USERNAME
+  password: $FLIT_PASSWORD
+  server: $FLIT_INDEX_URL
+  skip_existing: true
+  on:
+    branch: dev
