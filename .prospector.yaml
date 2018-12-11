@@ -20,7 +20,7 @@ mccabe:
     max-complexity: 20
 
 pyroma:
-  run: true
+  run: false
 
 pep257:
   run: false
