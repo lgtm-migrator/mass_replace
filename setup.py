@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import pathlib
-
 from setuptools import find_packages, setup
 
 # The directory containing this file
@@ -13,7 +12,6 @@ DESCRIPTION = "Walkthrough directories and find and replace txt on select filety
 URL = "https://github.com/Kilo59/mass_replace"
 EMAIL = "gabriel59kg@gmail.com"
 AUTHOR = "Gabriel Gore"
-REQUIRES_PYTHON = ">=3.5.0"
 # replace with __version__
 VERSION = "0.0.3"
 
@@ -31,7 +29,6 @@ else:
 setup(
     name=NAME,
     version=about["__version__"],
-    python_requires=REQUIRES_PYTHON,
     packages=find_packages(exclude=("tests",)),
     entry_points={"console_scripts": ["replace=mass_replace.__main__:main"]},
     install_requires=REQUIRED,
