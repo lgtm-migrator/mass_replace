@@ -2,8 +2,10 @@
 """
 mass_replace.py
 ~~~~~~~~~~~~~~~
-WIP
+
+Python Application for multiple simultaneous find and replace operations in a directory. 
 """
+import pathlib
 from sys import version_info
 import os
 import fileinput
@@ -12,6 +14,7 @@ from pprint import pprint as pp
 
 
 PYTHON_VER = (version_info.major, version_info.minor)
+ROOT = pathlib.Path(__file__).joinpath("..").resolve()
 
 
 def resolve_wd(target_dir="mass_replace"):
@@ -74,13 +77,15 @@ def discover_filetypes(root_folder=None, hard_copy="file_exts.txt"):
 
 
 def mass_replace(root_folder=None, config=None, verbose=False):
-    """Peforms find and replace operations on files nested in a root direcotry
+    """Performs find and replace operations on files nested in a root direcotry
     according to settings in the `config.yaml` file."""
     if not config:
         try:
             config = load_config("config.yaml")
         except FileNotFoundError:
-            config = load_config("mass_replace/config.yaml")
+            raise FileNotFoundError(
+                "Could not find a 'config.yaml' file and no alternative config provided"
+            )
     if not root_folder:
         root_folder = config["root_folder"]
     print("ROOT: {}".format(root_folder))

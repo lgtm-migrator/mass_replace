@@ -14,8 +14,8 @@ pytest-cov = "*"
 coveralls = "*"
 prospector = {extras = ["with_pyroma"],version = "*"}
 # wily = {version = "*",markers = "python_version >= '3.7'"}
-twine = "*"
-readme-renderer = {extras = ["md"],version = "*"}
+twine = ">=1.11.0"
+wheel= ">=0.31.0"
 
 [requires]
 python_version = "3.7"
@@ -26,3 +26,5 @@ reqs = "sh scripts/update_reqs.sh"
 pre = "pre-commit run --all-files"
 lint = "prospector --output-format grouped"
 test = "pytest -rpsf --cov-report term-missing --cov=mass_replace tests/"
+build = "python setup.py sdist bdist_wheel"
+publish = "python setup.py upload"

@@ -18,6 +18,12 @@ EVERY FILE OF THE SPECIFIED TYPE NESTED UNDERNEATH THE `root_folder` WILL BE SUB
 
 ## Installation and usage
 
+### Install with pip
+
+```
+pip install mass-replace
+```
+
 ### To run as a standalone `.exe`
 
 1. Download `mass_replace_windows_executable.zip`
