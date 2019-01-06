@@ -14,6 +14,8 @@ pytest-cov = "*"
 coveralls = "*"
 prospector = {extras = ["with_pyroma"],version = "*"}
 # wily = {version = "*",markers = "python_version >= '3.7'"}
+twine = ">=1.11.0"
+wheel= ">=0.31.0"
 
 [requires]
 python_version = "3.7"
