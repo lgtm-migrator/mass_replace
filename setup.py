@@ -1,16 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import pathlib
-from setuptools import find_packages, setup
-
-# The directory containing this file
-HERE = pathlib.Path(__file__).parent
-
 import os
 import sys
-import pathlib
 from shutil import rmtree
-
+import pathlib
 from setuptools import find_packages, setup, Command
 
 # The directory containing this file
