@@ -3,7 +3,7 @@
 mass_replace.py
 ~~~~~~~~~~~~~~~
 
-Python Application for multiple simultaneous find and replace operations in a directory. 
+Python Application for multiple simultaneous find and replace operations in a directory.
 """
 import pathlib
 from sys import version_info

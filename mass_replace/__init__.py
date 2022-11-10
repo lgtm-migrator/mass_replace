@@ -3,7 +3,7 @@
 mass_replace
 ~~~~~~~~~~~~
 
-"Walkthrough" through a specified `root_folder` and perform find and replace 
+"Walkthrough" through a specified `root_folder` and perform find and replace
 operations on every file of the specified type.
 """
 
